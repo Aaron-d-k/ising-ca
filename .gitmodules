@@ -1,0 +1,3 @@
+[submodule "nutshell"]
+	path = nutshell
+	url = https://github.com/supposedly/nutshell.git

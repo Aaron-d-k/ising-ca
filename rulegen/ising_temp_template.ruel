@@ -1,0 +1,21 @@
+@NUTSHELL ising_temp
+
+
+
+@TABLE
+neighborhood: vonNeumann
+[[[PASTE TRANSITIONS HERE]]]
+
+@COLORS
+0 0 0 : 0
+[[[PASTE COLORS HERE]]]
+
+@ICONS
+.  000000
+A  EEEEEF
+B  446611
+C  AAAA33
+D  550000
+E  FF1111
+
+[[[PASTE ICONS HERE]]]
