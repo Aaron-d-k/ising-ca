@@ -1,11 +1,12 @@
-//! ```cargo
-//! [dependencies]
-//! rand = "0.9.0"
-//! ```
+extern crate rand;
+extern crate csv;
+extern crate anyhow;
+
 
 use rand::prelude::*;
 use rand::Rng;
 use rand::distr::Uniform;
+use std::io::*;
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
 enum State
@@ -43,21 +44,20 @@ fn get_mag(grid :  &Grid) -> f64
 }
 
 
-//bad accuracy
-/*
-fn get_e(grid :  &[[State; W]; H]) -> f64
+fn get_e(grid :  &Grid) -> f64
 {
     let mut E = 0f64;
     for y in 0..H-1
     {
         for x in 0..W-1
         {
-            if grid[y][x]!=grid[y+1][x] {E+=1.0;}
-            if grid[y][x]!=grid[y][x+1] {E+=1.0;}
+            if grid.cells[y][x]!=grid.cells[y+1][x] {E+=2.0;}
+            if grid.cells[y][x]!=grid.cells[y][x+1] {E+=2.0;}
         }
     }
     E/((W*H*2) as f64)
-}*/
+}
+
 
 fn getcelle(x : usize, y : usize, grid :  &Grid) -> i32
 {
@@ -153,7 +153,7 @@ fn doca(parity : usize, grid :  &mut Grid)
 
 fn main()
 {
-        println!("hello");
+    println!("hello");
 
     let mut grid = Grid{cells: [[State::Down; W]; H], b_row: [State::Down; W] };
 
@@ -166,14 +166,23 @@ fn main()
         change(rx.sample(&mut myrng) as usize, ry.sample(&mut myrng) as usize, &mut grid, 0.0);
     }
 
-    for t_s in (100..400).rev()
+    let n_datapoints = 30;
+    let T_max = 3.0;
+    let T_min = 1.5;
+    let n_timestamps = 1000;
+
+    let mut magdata = vec![vec![0.0; n_timestamps]; n_datapoints];
+    let mut edata =   vec![vec![0.0; n_timestamps]; n_datapoints];
+    let mut tdata = vec![0.0; n_datapoints];
+
+    for t_s in (0..n_datapoints).rev()
     {
-        let T = t_s as f64/200.0;
+        let T = T_min + (T_max-T_min)*((t_s as f64)/(n_datapoints as f64));
         let beta = 1.0/T;
 
-        let rho = 1.0/(beta.exp()+1.0);
+        let rho = 1.0/((beta*2.0).exp()+1.0);
 
-        for _i in 1..20000
+        for _i in 0..20000
         {
             for _j in 0..W
             { if _i%2==_j%2 {bath(_j, &mut grid, rho); }}
@@ -195,8 +204,34 @@ fn main()
         }
         */
 
-        let m = get_mag(&grid);
+        tdata[t_s] = T;
+        for timestamp in 1..n_timestamps
+        {
+            for _i in 0..100
+            {
+                for _j in 0..W
+                { if _i%2==_j%2 {bath(_j, &mut grid, rho); }}
 
-        println!("{rho:.3} {m:.3}");
+                doca(_i%2, &mut grid);
+            }
+
+            magdata[t_s][timestamp] = get_mag(&grid);
+            edata[t_s][timestamp] = get_e(&grid);
+        }
+        print!("\rt_s = {t_s}");
+        stdout().flush().unwrap();
     }
+
+    println!("done, writing files...");
+
+    let mut magdataw = csv::Writer::from_path("data/magdata.txt").unwrap();
+    for i in magdata { magdataw.serialize(i).unwrap(); }
+
+    let mut edataw = csv::Writer::from_path("data/edata.txt").unwrap();
+    for i in edata { edataw.serialize(i).unwrap(); }
+
+    let mut tdataw = csv::Writer::from_path("data/tdata.txt").unwrap();
+    tdataw.serialize(tdata).unwrap();
+
+
 }
