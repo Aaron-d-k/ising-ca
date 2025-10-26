@@ -1,0 +1,80 @@
+@RULE testing_temp
+********************************
+**** COMPILED FROM NUTSHELL ****
+****         v0.6.3         ****
+********************************
+
+
+@TABLE
+neighborhood: vonNeumann
+symmetries: none
+n_states: 7
+
+var any.0 = {0,1,2,3,4,5,6}
+var any.1 = any.0
+var any.2 = any.0
+var any.3 = any.0
+var any.4 = any.0
+var active.0 = {4,5,6}
+var active.1 = active.0
+var active.2 = active.0
+var active.3 = active.0
+var passive.0 = {1,2,3}
+var passive.1 = passive.0
+var passive.2 = passive.0
+var passive.3 = passive.0
+
+4, 1, 1, 1, 2, 2
+4, 1, 1, 2, 1, 2
+4, 1, 1, 3, 3, 2
+4, 1, 2, 1, 1, 2
+4, 1, 3, 1, 3, 2
+4, 1, 3, 3, 1, 2
+4, 2, 1, 2, 2, 2
+4, 2, 2, 1, 2, 2
+4, 2, 2, 2, 1, 2
+4, 2, 2, 3, 3, 2
+4, 2, 3, 2, 3, 2
+4, 2, 3, 3, 2, 2
+4, 3, 1, 2, 3, 2
+4, 3, 1, 3, 2, 2
+4, 3, 2, 1, 3, 2
+4, 3, 2, 3, 1, 2
+4, 3, 3, 1, 2, 2
+4, 3, 3, 2, 1, 2
+4, 3, 3, 3, 3, 2
+5, 1, 1, 1, 2, 1
+5, 1, 1, 2, 1, 1
+5, 1, 1, 3, 3, 1
+5, 1, 2, 1, 1, 1
+5, 1, 3, 1, 3, 1
+5, 1, 3, 3, 1, 1
+5, 2, 1, 2, 2, 1
+5, 2, 2, 1, 2, 1
+5, 2, 2, 2, 1, 1
+5, 2, 2, 3, 3, 1
+5, 2, 3, 2, 3, 1
+5, 2, 3, 3, 2, 1
+5, 3, 1, 2, 3, 1
+5, 3, 1, 3, 2, 1
+5, 3, 2, 1, 3, 1
+5, 3, 2, 3, 1, 1
+5, 3, 3, 1, 2, 1
+5, 3, 3, 2, 1, 1
+5, 3, 3, 3, 3, 1
+1, active.0, active.1, active.2, active.3, 4
+4, passive.0, passive.1, passive.2, passive.3, 1
+2, active.0, active.1, active.2, active.3, 5
+5, passive.0, passive.1, passive.2, passive.3, 2
+3, active.0, active.1, active.2, active.3, 6
+6, passive.0, passive.1, passive.2, passive.3, 3
+any.0, any.1, any.2, any.3, any.4, 0
+
+@COLORS
+0 0 0 0
+4 0 0 255
+1 0 0 229
+5 0 127 255
+2 0 114 229
+6 0 255 255
+3 0 229 229

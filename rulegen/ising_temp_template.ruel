@@ -1,9 +1,9 @@
-@NUTSHELL ising_temp
+@NUTSHELL wierd_temp
 
 
 
 @TABLE
-neighborhood: vonNeumann
+neighborhood: Moore
 [[[PASTE TRANSITIONS HERE]]]
 
 @COLORS

@@ -8,6 +8,8 @@ use rand::Rng;
 use rand::distr::Uniform;
 use std::io::*;
 
+pub mod rulegen;
+
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
 enum State
 {
@@ -151,7 +153,7 @@ fn doca(parity : usize, grid :  &mut Grid)
 }
 
 
-fn main()
+fn main_1()
 {
     println!("hello");
 
@@ -234,4 +236,14 @@ fn main()
     tdataw.serialize(tdata).unwrap();
 
 
+}
+
+pub fn main_2()
+{
+
+}
+
+fn main()
+{
+    main_1();
 }

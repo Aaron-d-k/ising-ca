@@ -1,0 +1,144 @@
+@RULE testing_temp
+********************************
+**** COMPILED FROM NUTSHELL ****
+****         v0.6.3         ****
+********************************
+
+
+@TABLE
+neighborhood: vonNeumann
+symmetries: none
+n_states: 25
+
+var any.0 = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24}
+var any.1 = any.0
+var any.2 = any.0
+var any.3 = any.0
+var any.4 = any.0
+var active_fsg.0 = {3,4,7,8,21,22,23,24}
+var active_fsg.1 = active_fsg.0
+var active_fsg.2 = active_fsg.0
+var active_fsg.3 = active_fsg.0
+var passive_fsg.0 = {1,2,5,6,17,18,19,20}
+var passive_fsg.1 = passive_fsg.0
+var passive_fsg.2 = passive_fsg.0
+var passive_fsg.3 = passive_fsg.0
+var up_p_fsg.0 = {2,18,20,6}
+var up_p_fsg.1 = up_p_fsg.0
+var up_p_fsg.2 = up_p_fsg.0
+var down_p_fsg.0 = {1,18,20,5}
+var down_p_fsg.1 = down_p_fsg.0
+var down_p_fsg.2 = down_p_fsg.0
+var active_i.0 = {11,12,15,16,21,22,23,24}
+var active_i.1 = active_i.0
+var active_i.2 = active_i.0
+var active_i.3 = active_i.0
+var passive_i.0 = {9,10,13,14,17,18,19,20}
+var passive_i.1 = passive_i.0
+var passive_i.2 = passive_i.0
+var passive_i.3 = passive_i.0
+var up_p_i.0 = {10,19,20,14}
+var up_p_i.1 = up_p_i.0
+var down_p_i.0 = {9,18,13,17}
+var down_p_i.1 = down_p_i.0
+var _a0.0 = {0,3,4,7,8,21,22,23,24}
+var _a0.1 = _a0.0
+var _a0.2 = _a0.0
+var _a0.3 = _a0.0
+var _b0.0 = {0,1,2,5,6,17,18,19,20}
+var _b0.1 = _b0.0
+var _b0.2 = _b0.0
+var _b0.3 = _b0.0
+var _c0.0 = {0,11,12,15,16,21,22,23,24}
+var _c0.1 = _c0.0
+var _c0.2 = _c0.0
+var _c0.3 = _c0.0
+var _d0.0 = {0,9,10,13,14,17,18,19,20}
+var _d0.1 = _d0.0
+var _d0.2 = _d0.0
+var _d0.3 = _d0.0
+var _e0.0 = {0,21,22,23,24}
+var _e0.1 = _e0.0
+var _f0.0 = {0,17,18,19,20}
+var _f0.1 = _f0.0
+
+3, up_p_fsg.0, up_p_fsg.1, up_p_fsg.2, down_p_fsg.0, 2
+3, up_p_fsg.0, up_p_fsg.1, down_p_fsg.0, up_p_fsg.2, 2
+3, up_p_fsg.0, down_p_fsg.0, down_p_fsg.1, down_p_fsg.2, 2
+3, down_p_fsg.0, up_p_fsg.0, up_p_fsg.1, up_p_fsg.2, 2
+3, down_p_fsg.0, down_p_fsg.1, up_p_fsg.0, down_p_fsg.2, 2
+3, down_p_fsg.0, down_p_fsg.1, down_p_fsg.2, up_p_fsg.0, 2
+4, up_p_fsg.0, up_p_fsg.1, up_p_fsg.2, down_p_fsg.0, 1
+4, up_p_fsg.0, up_p_fsg.1, down_p_fsg.0, up_p_fsg.2, 1
+4, up_p_fsg.0, down_p_fsg.0, down_p_fsg.1, down_p_fsg.2, 1
+4, down_p_fsg.0, up_p_fsg.0, up_p_fsg.1, up_p_fsg.2, 1
+4, down_p_fsg.0, down_p_fsg.1, up_p_fsg.0, down_p_fsg.2, 1
+4, down_p_fsg.0, down_p_fsg.1, down_p_fsg.2, up_p_fsg.0, 1
+1, active_fsg.0, active_fsg.1, active_fsg.2, active_fsg.3, 3
+3, passive_fsg.0, passive_fsg.1, passive_fsg.2, passive_fsg.3, 1
+2, active_fsg.0, active_fsg.1, active_fsg.2, active_fsg.3, 4
+4, passive_fsg.0, passive_fsg.1, passive_fsg.2, passive_fsg.3, 2
+5, _a0.0, _a0.1, _a0.2, _a0.3, 7
+7, _b0.0, _b0.1, _b0.2, _b0.3, 5
+6, _a0.0, _a0.1, _a0.2, _a0.3, 8
+8, _b0.0, _b0.1, _b0.2, _b0.3, 6
+11, up_p_i.0, up_p_i.1, down_p_i.0, down_p_i.1, 10
+11, up_p_i.0, down_p_i.0, up_p_i.1, down_p_i.1, 10
+11, up_p_i.0, down_p_i.0, down_p_i.1, up_p_i.1, 10
+11, down_p_i.0, up_p_i.0, up_p_i.1, down_p_i.1, 10
+11, down_p_i.0, up_p_i.0, down_p_i.1, up_p_i.1, 10
+11, down_p_i.0, down_p_i.1, up_p_i.0, up_p_i.1, 10
+12, up_p_i.0, up_p_i.1, down_p_i.0, down_p_i.1, 9
+12, up_p_i.0, down_p_i.0, up_p_i.1, down_p_i.1, 9
+12, up_p_i.0, down_p_i.0, down_p_i.1, up_p_i.1, 9
+12, down_p_i.0, up_p_i.0, up_p_i.1, down_p_i.1, 9
+12, down_p_i.0, up_p_i.0, down_p_i.1, up_p_i.1, 9
+12, down_p_i.0, down_p_i.1, up_p_i.0, up_p_i.1, 9
+9, active_i.0, active_i.1, active_i.2, active_i.3, 11
+11, passive_i.0, passive_i.1, passive_i.2, passive_i.3, 9
+10, active_i.0, active_i.1, active_i.2, active_i.3, 12
+12, passive_i.0, passive_i.1, passive_i.2, passive_i.3, 10
+13, _c0.0, _c0.1, _c0.2, _c0.3, 15
+15, _d0.0, _d0.1, _d0.2, _d0.3, 13
+14, _c0.0, _c0.1, _c0.2, _c0.3, 16
+16, _d0.0, _d0.1, _d0.2, _d0.3, 14
+17, _e0.0, active_i.0, _e0.1, active_fsg.0, 21
+21, _f0.0, 10, _f0.1, 2, 17
+21, _f0.0, 9, _f0.1, 2, 17
+21, _f0.0, 10, _f0.1, 1, 17
+21, _f0.0, 9, _f0.1, 1, 17
+18, _e0.0, active_i.0, _e0.1, active_fsg.0, 18
+22, _f0.0, 10, _f0.1, 1, 22
+22, _f0.0, 9, _f0.1, 1, 22
+22, _f0.0, 10, _f0.1, 2, 22
+22, _f0.0, 9, _f0.1, 2, 22
+19, _e0.0, active_i.0, _e0.1, active_fsg.0, 19
+23, _f0.0, 9, _f0.1, 2, 23
+23, _f0.0, 10, _f0.1, 2, 23
+23, _f0.0, 9, _f0.1, 1, 23
+23, _f0.0, 10, _f0.1, 1, 23
+20, _e0.0, active_i.0, _e0.1, active_fsg.0, 24
+24, _f0.0, 9, _f0.1, 1, 20
+24, _f0.0, 10, _f0.1, 1, 20
+24, _f0.0, 9, _f0.1, 2, 20
+24, _f0.0, 10, _f0.1, 2, 20
+any.0, any.1, any.2, any.3, any.4, 0
+
+@COLORS
+0 0 0 0
+3 0 0 153
+1 0 0 127
+7 127 0 153
+5 127 0 127
+11 25 0 153
+9 25 0 127
+15 153 0 153
+13 153 0 127
+4 0 127 153
+2 0 114 127
+8 127 127 153
+6 127 114 127
+12 25 127 153
+10 25 114 127
+16 153 127 153
+14 153 114 127
