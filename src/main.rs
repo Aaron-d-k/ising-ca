@@ -7,6 +7,8 @@ use rand::prelude::*;
 use rand::Rng;
 use rand::distr::Uniform;
 use std::io::*;
+use std::fs::File;
+
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
 enum State
@@ -22,7 +24,7 @@ struct Grid
     b_row : [State; W]
 }
 
-const W : usize = 100;
+const W : usize = 50;
 const H : usize = 50;
 
 
@@ -150,8 +152,8 @@ fn doca(parity : usize, grid :  &mut Grid)
     }
 }
 
-
-fn main()
+#[allow(dead_code)]
+fn lotsample()
 {
     println!("hello");
 
@@ -234,4 +236,73 @@ fn main()
     tdataw.serialize(tdata).unwrap();
 
 
+}
+
+fn imitate()
+{
+    println!("hello");
+
+    let mut myrng = rand::rng();
+    let rx = Uniform::<i32>::new(0,W as i32).unwrap();
+    let ry = Uniform::<i32>::new(0,H as i32).unwrap();
+
+    let n_datapoints = 100;
+    let T_max = 3.0;
+    let T_min = 1.5;
+    let n_repeat = 100;
+
+    let mut magdata = vec![0.0; n_datapoints* n_repeat];
+    let mut edata =   vec![0.0; n_datapoints * n_repeat];
+
+    for rep_num in 0..n_repeat
+    {
+        let mut grid = Grid{cells: [[State::Down; W]; H], b_row: [State::Down; W] };
+        for _i in 1..1000
+        {
+            change(rx.sample(&mut myrng) as usize, ry.sample(&mut myrng) as usize, &mut grid, 0.0);
+        }
+
+        for _i in 0..10000
+        {
+            for _j in 0..W
+            { if _i%2==_j%2 {bath(_j, &mut grid, 1.0/((2.0f64/T_max).exp()+1.0)); }}
+
+            doca(_i%2, &mut grid);
+        }
+
+        for t_s in (0..n_datapoints).rev()
+        {
+            let T = T_min + (T_max-T_min)*((t_s as f64)/(n_datapoints as f64));
+            let beta = 1.0/T;
+
+            let rho = 1.0/((beta*2.0).exp()+1.0);
+
+            for _i in 0..1000
+            {
+                for _j in 0..W
+                { if _i%2==_j%2 {bath(_j, &mut grid, rho); }}
+
+                doca(_i%2, &mut grid);
+            }
+
+
+            magdata[n_datapoints*rep_num + t_s] = get_mag(&grid);
+            edata[n_datapoints*rep_num + t_s] = rho;
+            
+            print!("\rt_s = {t_s}");
+            stdout().flush().unwrap();
+        }
+    }
+
+    println!("done, writing files...");
+
+    let zipped: Vec<(f64, f64)> = edata.iter().cloned().zip(magdata.iter().cloned()).collect();
+
+    let mut w = File::create("data/simcadata.txt").unwrap();
+    writeln!(&mut w, "{:?}", zipped).unwrap();
+}
+
+fn main()
+{
+    imitate();
 }
